@@ -33,6 +33,7 @@ class ImagePostViewController: ShiftableViewController {
     
     @IBOutlet weak var falseColorOneSegmentedControl: UISegmentedControl!
     @IBOutlet weak var falseColorTwoSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var sepiaIntensitySlider: UISlider!
     
     
     
@@ -88,11 +89,12 @@ class ImagePostViewController: ShiftableViewController {
         //Hide all buttons until needed
         
         saveButton.isHidden = false
-
+        
         falseColorOneSegmentedControl.isHidden = true
         falseColorTwoSegmentedControl.isHidden = true
         ciZoomBlurSlider.isHidden = true
         ciZoomBlurSegmentedControl.isHidden = true
+        sepiaIntensitySlider.isHidden = true
         
     }
     
@@ -116,7 +118,7 @@ class ImagePostViewController: ShiftableViewController {
     private func updateImage() {
         if let scaledImage = scaledImage {
             switch self.filterSelected {
-                case .ciZoomBlur:
+            case .ciZoomBlur:
                 imageView.image = filterPhoto(scaledImage, filterSelected: .ciZoomBlur)
             case .ciFalseColor:
                 imageView.image = filterPhoto(scaledImage, filterSelected: .ciFalseColor)
@@ -150,15 +152,15 @@ class ImagePostViewController: ShiftableViewController {
             
             guard let outputFalseColorFilterCIImage = ciFalseColor.outputImage else { return nil }
             guard let falseColorFilterOutputImage = context.createCGImage(outputFalseColorFilterCIImage, from: CGRect(origin: .zero, size: image.size)) else { return nil }
-
+            
             
             return UIImage(cgImage: falseColorFilterOutputImage)
             
         case .ciEffectTonal:
             guard let cgImage = image.cgImage else { return nil }
-
+            
             let ciImage = CIImage(cgImage: cgImage)
-
+            
             let ciEffectTonal = CIFilter.photoEffectTonal()
             ciEffectTonal.inputImage = ciImage
             guard let outputPhotoEffectTonal = ciEffectTonal.outputImage else { return nil }
@@ -166,6 +168,30 @@ class ImagePostViewController: ShiftableViewController {
             guard let outPutTonalCGImage = context.createCGImage(outputPhotoEffectTonal, from: CGRect(origin: .zero, size: image.size)) else { return image }
             
             return UIImage(cgImage: outPutTonalCGImage)
+            
+        case .ciEffectInstant:
+            guard let cgImage = image.cgImage else { return nil }
+            let ciImage = CIImage(cgImage: cgImage)
+            
+            let photoEffectInstant = CIFilter.photoEffectInstant()
+            photoEffectInstant.inputImage = ciImage
+            guard let photoEffectIntantOutputImage = photoEffectInstant.outputImage else { return image }
+            guard let outputPhotoEffectInstantCGImage = context.createCGImage(photoEffectIntantOutputImage, from: CGRect(origin: .zero, size: image.size)) else {return image}
+            
+            return UIImage(cgImage: outputPhotoEffectInstantCGImage)
+            
+        case .ciSepiaTone:
+            guard let cgImage = image.cgImage else { return nil }
+            let ciImage = CIImage(cgImage: cgImage)
+            
+            let sepiaTone = CIFilter.sepiaTone()
+            sepiaTone.inputImage = ciImage
+            sepiaTone.intensity = sepiaIntensitySlider.value
+            guard let sepiaToneOutPutCIImage = sepiaTone.outputImage else { return image }
+            guard let outPutCGCiSepiaToneImage = context.createCGImage(sepiaToneOutPutCIImage, from: CGRect(origin: .zero, size: image.size)) else {return image}
+            
+            
+            return UIImage(cgImage: outPutCGCiSepiaToneImage)
             
             
             
@@ -185,14 +211,7 @@ class ImagePostViewController: ShiftableViewController {
             
             return UIImage(cgImage: outPutCGZoomBlurImage)
             
-        case .ciEffectTonal:
-            return nil
-        case .ciEffectInstant:
-            return nil
-        case .ciSepiaTone:
-            return nil
         }
-        
     }
     
     //MARK: - OBJC functions for (CI FALSE COLOR)
@@ -275,8 +294,14 @@ class ImagePostViewController: ShiftableViewController {
     
     //MARK: - END (CI ZOOM BLUR)
     
+    //MARK: - Sepia Tone
     
     
+    @IBAction func sepiaIntensitySlider(_ sender: Any) {
+        updateImage()
+    }
+    //MARK: - END (Sepia Tone)
+
     
     private func presentImagePickerController() {
         
@@ -379,7 +404,9 @@ class ImagePostViewController: ShiftableViewController {
     @IBAction func sepiaTapped(_ sender: Any) {
         originalImage = imageView.image
         filterSelected = .ciSepiaTone
-        
+        sepiaIntensitySlider.isHidden = false
+        sepiaIntensitySlider.minimumTrackTintColor = .lightGray
+        sepiaIntensitySlider.maximumTrackTintColor = .brown
     }
     
     @IBAction func zoomBlurTapped(_ sender: Any) {
