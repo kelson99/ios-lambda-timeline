@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>542830468739-30p1u0kumf649smrcqhntoo5sgspdtbv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.542830468739-30p1u0kumf649smrcqhntoo5sgspdtbv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDxH3d9fA9NUwhAHBnwoV6SxryVeIpga5M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>542830468739</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.KelsonHartle.LambaTimeline</string>
+	<key>PROJECT_ID</key>
+	<string>lambdatimeline-31cbd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>lambdatimeline-31cbd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:542830468739:ios:7785369431d32278fc85b6</string>
+	<key>DATABASE_URL</key>
+	<string>https://lambdatimeline-31cbd.firebaseio.com</string>
+</dict>
+</plist>

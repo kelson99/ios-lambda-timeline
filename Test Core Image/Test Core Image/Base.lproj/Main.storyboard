@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XG8-Pk-As0">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Image Post View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ImagePostViewController" customModule="Test_Core_Image" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-8L-d4N">
+                                <rect key="frame" x="0.0" y="122" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Wds-8L-d4N" secondAttribute="height" multiplier="1:1" id="lDV-uR-WBs"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="E9N-Qp-zxy">
+                                <rect key="frame" x="60" y="591" width="295" height="271"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xVX-sJ-0Xa">
+                                        <rect key="frame" x="-2" y="0.0" width="299" height="31"/>
+                                        <connections>
+                                            <action selector="didChangeSepiaToneIntensity:" destination="BYZ-38-t0r" eventType="valueChanged" id="UyP-pb-ti4"/>
+                                        </connections>
+                                    </slider>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYX-Nr-few">
+                                        <rect key="frame" x="0.0" y="38" width="295" height="32"/>
+                                        <segments>
+                                            <segment title="10,20"/>
+                                            <segment title="50,30"/>
+                                            <segment title="120,50"/>
+                                            <segment title="60,80"/>
+                                            <segment title="200,300"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dnb-ug-f1E">
+                                        <rect key="frame" x="-2" y="77" width="299" height="31"/>
+                                        <connections>
+                                            <action selector="didChangeCiZoomBlur:" destination="BYZ-38-t0r" eventType="valueChanged" id="EK5-sb-DbT"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="SGh-Zn-yNE">
+                                        <rect key="frame" x="-2" y="115" width="299" height="31"/>
+                                        <connections>
+                                            <action selector="ciBoxBlurSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="7cc-Fe-urN"/>
+                                        </connections>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrQ-yT-gR0">
+                                        <rect key="frame" x="0.0" y="153" width="295" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <state key="normal" title="Tonal Effect">
+                                            <color key="titleColor" red="0.16617140129999999" green="0.64357947339999999" blue="0.28978396000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="94d-5R-wRH">
+                                        <rect key="frame" x="0.0" y="201" width="295" height="32"/>
+                                        <segments>
+                                            <segment title="Green"/>
+                                            <segment title="Blue"/>
+                                            <segment title="Red"/>
+                                            <segment title="Magenta"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nRb-et-EKg">
+                                        <rect key="frame" x="0.0" y="240" width="295" height="32"/>
+                                        <segments>
+                                            <segment title="Cyan"/>
+                                            <segment title="Gray"/>
+                                            <segment title="Black"/>
+                                            <segment title="Yellow"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Wds-8L-d4N" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0Uz-fD-CxF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E9N-Qp-zxy" secondAttribute="trailing" constant="59" id="4fj-sz-HJq"/>
+                            <constraint firstItem="E9N-Qp-zxy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4vW-k0-kHu"/>
+                            <constraint firstItem="Wds-8L-d4N" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="5b5-NJ-mli"/>
+                            <constraint firstItem="Wds-8L-d4N" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wQn-6j-0Td"/>
+                            <constraint firstItem="E9N-Qp-zxy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="ysp-Dy-sEt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jQU-c9-khU">
+                        <barButtonItem key="rightBarButtonItem" title="choose photo" id="gN7-8e-iqA">
+                            <connections>
+                                <action selector="choosePhotoButtonTapped:" destination="BYZ-38-t0r" id="3fK-uT-I5v"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ciBoxBlurSlider" destination="SGh-Zn-yNE" id="n7B-Ml-JGQ"/>
+                        <outlet property="ciSepiaToneSLider" destination="xVX-sJ-0Xa" id="xci-26-dgj"/>
+                        <outlet property="ciZoomBlurSegmentedControl" destination="UYX-Nr-few" id="HQk-fG-kJF"/>
+                        <outlet property="ciZoomBlurSliderInputAmount" destination="Dnb-ug-f1E" id="kM3-m7-y8i"/>
+                        <outlet property="falseColorSegmentedControlOne" destination="94d-5R-wRH" id="M4q-kr-WRt"/>
+                        <outlet property="falseColorSegmentedControlTwo" destination="nRb-et-EKg" id="Krr-md-wtG"/>
+                        <outlet property="imageView" destination="Wds-8L-d4N" id="hgc-eT-ORj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="931.88405797101461" y="138.61607142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iKQ-tX-yDT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XG8-Pk-As0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GjG-Ce-bKW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="08s-jS-51m"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bwO-hL-FFx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="small" width="1200" height="800"/>
+    </resources>
+</document>

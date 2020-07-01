@@ -47,7 +47,7 @@ extension SignInViewController: GIDSignInDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let postsNavigationController = storyboard.instantiateViewController(withIdentifier: "PostsNavigationController")
                 postsNavigationController.modalPresentationStyle = .fullScreen
-                self.present(postsNavigationController, animated: true, completion: nil)
+                self.present(postsNavigationController, animated: false, completion: nil)
             }
         }
     }

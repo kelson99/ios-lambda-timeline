@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xB5-Kl-GM2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xB5-Kl-GM2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -120,7 +119,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PkI-rS-ua9">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="417"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="610"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQ3-V3-hIf">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="375"/>
@@ -155,8 +154,81 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKW-in-Epi">
+                                                <rect key="frame" x="0.0" y="425" width="414" height="30"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="saveEditedPhotoButtonTapped:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="ZX4-FH-T3j"/>
+                                                </connections>
+                                            </button>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FZL-yy-pOc">
+                                                <rect key="frame" x="0.0" y="463" width="414" height="32"/>
+                                                <segments>
+                                                    <segment title="10,20"/>
+                                                    <segment title="50,30"/>
+                                                    <segment title="120,50"/>
+                                                    <segment title="60,80"/>
+                                                    <segment title="200,300"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zy6-J6-wTO">
+                                                <rect key="frame" x="-2" y="502" width="418" height="31"/>
+                                                <connections>
+                                                    <action selector="didChangeZoomBlur:" destination="1Aw-4e-BW2" eventType="valueChanged" id="wEm-Dg-vhz"/>
+                                                </connections>
+                                            </slider>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C3X-Jp-Qff">
+                                                <rect key="frame" x="0.0" y="540" width="414" height="32"/>
+                                                <segments>
+                                                    <segment title="Green"/>
+                                                    <segment title="Blue"/>
+                                                    <segment title="Red"/>
+                                                    <segment title="Magenta"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YQr-Nd-ZJC">
+                                                <rect key="frame" x="0.0" y="579" width="414" height="32"/>
+                                                <segments>
+                                                    <segment title="Cyan"/>
+                                                    <segment title="Gray"/>
+                                                    <segment title="Black"/>
+                                                    <segment title="Yellow"/>
+                                                </segments>
+                                            </segmentedControl>
                                         </subviews>
                                     </stackView>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qHN-fe-FyG">
+                                        <rect key="frame" x="0.0" y="730" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem title="False Color" id="opE-V8-6Th">
+                                                <connections>
+                                                    <action selector="falseColorTapped:" destination="1Aw-4e-BW2" id="TqC-Bo-ga9"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="xGc-5S-DHv"/>
+                                            <barButtonItem title="Tonal" id="w3C-w5-OD0">
+                                                <connections>
+                                                    <action selector="tonalTapped:" destination="1Aw-4e-BW2" id="qEf-c0-sHi"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Instant" id="ntW-wv-yS9">
+                                                <connections>
+                                                    <action selector="instantTapped:" destination="1Aw-4e-BW2" id="qEs-uV-E3h"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Sepia" id="BLo-5l-2ch">
+                                                <connections>
+                                                    <action selector="sepiaTapped:" destination="1Aw-4e-BW2" id="whl-jM-lfQ"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Zoom Blur" id="T7J-Jl-0Il">
+                                                <connections>
+                                                    <action selector="zoomBlurTapped:" destination="1Aw-4e-BW2" id="L2a-ZT-YUT"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="PkI-rS-ua9" secondAttribute="trailing" id="1cC-FG-cAC"/>
@@ -187,13 +259,23 @@
                     </navigationItem>
                     <connections>
                         <outlet property="chooseImageButton" destination="VxD-cu-jHT" id="KVs-no-MbU"/>
+                        <outlet property="ciZoomBlurSegmentedControl" destination="FZL-yy-pOc" id="OYX-b9-H0U"/>
+                        <outlet property="ciZoomBlurSlider" destination="zy6-J6-wTO" id="uBR-H5-WZi"/>
+                        <outlet property="falseColorOneSegmentedControl" destination="C3X-Jp-Qff" id="xVQ-io-51j"/>
+                        <outlet property="falseColorTwoSegmentedControl" destination="YQr-Nd-ZJC" id="9OZ-FE-OWt"/>
                         <outlet property="imageHeightConstraint" destination="MHD-wr-Gq9" id="HyG-8g-Ck1"/>
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
                         <outlet property="postButton" destination="hsH-Uv-tug" id="ZBn-KE-cpU"/>
+                        <outlet property="saveButton" destination="VKW-in-Epi" id="bJg-A4-mC4"/>
                         <outlet property="titleTextField" destination="Op6-OA-6Ou" id="JEe-cj-4mv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXa-A2-VJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qbs-51-MZh">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                </button>
             </objects>
             <point key="canvasLocation" x="1969" y="-195"/>
         </scene>
