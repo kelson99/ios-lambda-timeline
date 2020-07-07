@@ -30,7 +30,6 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var postButton: UIBarButtonItem!
     @IBOutlet weak var ciZoomBlurSlider: UISlider!
     @IBOutlet weak var ciZoomBlurSegmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var falseColorOneSegmentedControl: UISegmentedControl!
     @IBOutlet weak var falseColorTwoSegmentedControl: UISegmentedControl!
     @IBOutlet weak var sepiaIntensitySlider: UISlider!

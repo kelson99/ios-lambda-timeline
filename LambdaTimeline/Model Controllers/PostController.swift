@@ -17,8 +17,9 @@ class PostController {
         
         guard let currentUser = Auth.auth().currentUser,
             let author = Author(user: currentUser) else { return }
+        let ref = storageRef.child(mediaType.rawValue)
         
-        store(mediaData: mediaData, mediaType: mediaType) { (mediaURL) in
+        store(mediaData: mediaData, storage: ref) { (mediaURL) in
             
             guard let mediaURL = mediaURL else { completion(false); return }
             
@@ -29,7 +30,6 @@ class PostController {
                     NSLog("Error posting image post: \(error)")
                     completion(false)
                 }
-        
                 completion(true)
             }
         }
@@ -45,7 +45,31 @@ class PostController {
         
         savePostToFirebase(post)
     }
-
+    
+    func addAudioComment(with comment: Comment, to post: inout Post) {
+        post.comments.append(comment)
+        savePostToFirebase(post)
+        
+        
+        
+    }
+    
+    func createAudioComment(with mediaData: Data, completion: @escaping (Comment?) -> Void = {_ in}) {
+        
+        guard let currentUser = Auth.auth().currentUser,
+            let author = Author(user: currentUser) else { return }
+        
+        let ref = storageRef.child("audio")
+        store(mediaData: mediaData, storage: ref) { (mediaURL) in
+            
+            guard let mediaURL = mediaURL else { completion(nil); return }
+            
+            let audioComment = Comment(text: nil, author: author, audioURL: mediaURL)
+            completion(audioComment)
+            
+        }
+    }
+    
     func observePosts(completion: @escaping (Error?) -> Void) {
         
         postsRef.observe(.value, with: { (snapshot) in
@@ -54,13 +78,15 @@ class PostController {
             
             var posts: [Post] = []
             
+            
+            // Here is where the posts pulled down from the server are being sorted.
             for (key, value) in postDictionaries {
                 
                 guard let post = Post(dictionary: value, id: key) else { continue }
                 
                 posts.append(post)
             }
-            
+            // Then they are sorted by timestamp with the newest timestamps being the first on the list being displayed first.
             self.posts = posts.sorted(by: { $0.timestamp > $1.timestamp })
             
             completion(nil)
@@ -78,12 +104,18 @@ class PostController {
         
         ref.setValue(post.dictionaryRepresentation)
     }
-
-    private func store(mediaData: Data, mediaType: MediaType, completion: @escaping (URL?) -> Void) {
+    
+    
+    //Here you can also change mediaType to Storage refrence. I guess that is what they are reffering to with this instruction
+    
+    /*
+     You can very easily change the store method to instead take in data and a StorageReference to accomodate for storing both Post media data and now the audio data as well.
+     */
+    private func store(mediaData: Data, storage: StorageReference, completion: @escaping (URL?) -> Void) {
         
         let mediaID = UUID().uuidString
         
-        let mediaRef = storageRef.child(mediaType.rawValue).child(mediaID)
+        let mediaRef = storage.child(mediaID)
         
         let uploadTask = mediaRef.putData(mediaData, metadata: nil) { (metadata, error) in
             if let error = error {
@@ -92,6 +124,7 @@ class PostController {
                 return
             }
             
+            //? ( DO NOT understand this code snippet below.)
             if metadata == nil {
                 NSLog("No metadata returned from upload task.")
                 completion(nil)

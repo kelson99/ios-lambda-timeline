@@ -14,15 +14,19 @@ class Comment: FirebaseConvertible, Equatable {
     static private let textKey = "text"
     static private let author = "author"
     static private let timestampKey = "timestamp"
+    static private let audioKey = "audio"
     
-    let text: String
+    let text: String?
     let author: Author
     let timestamp: Date
+    let audioURL: URL?
     
-    init(text: String, author: Author, timestamp: Date = Date()) {
+    // Why The F are there two init methods
+    init(text: String?, author: Author, timestamp: Date = Date(), audioURL: URL? = nil) {
         self.text = text
         self.author = author
         self.timestamp = timestamp
+        self.audioURL = audioURL
     }
     
     init?(dictionary: [String : Any]) {
@@ -34,12 +38,20 @@ class Comment: FirebaseConvertible, Equatable {
         self.text = text
         self.author = author
         self.timestamp = Date(timeIntervalSince1970: timestampTimeInterval)
+        
+        if let audioText = dictionary[Comment.audioKey] as? String {
+            self.audioURL = URL(string: audioText)
+        } else {
+            self.audioURL = nil
+        }
     }
     
+    // And also a dictionary representation method.
     var dictionaryRepresentation: [String: Any] {
-        return [Comment.textKey: text,
+        return [Comment.textKey: text ?? "",
                 Comment.author: author.dictionaryRepresentation,
-                Comment.timestampKey: timestamp.timeIntervalSince1970]
+                Comment.timestampKey: timestamp.timeIntervalSince1970,
+                Comment.audioKey : audioURL?.absoluteString ?? ""]
     }
     
     static func ==(lhs: Comment, rhs: Comment) -> Bool {

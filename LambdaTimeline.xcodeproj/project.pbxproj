@@ -31,6 +31,13 @@
 		46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */; };
 		5020E53324ABB1B900E70522 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5020E53224ABB1B900E70522 /* GoogleService-Info.plist */; };
 		5020E53724ABF7A500E70522 /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020E53624ABF7A500E70522 /* UIImage+Scaling.swift */; };
+		5020E55924AE795500E70522 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020E55824AE795400E70522 /* Player.swift */; };
+		5020E55B24AE7AE700E70522 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020E55A24AE7AE700E70522 /* Recorder.swift */; };
+		5020E55D24AF9ACA00E70522 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5020E55C24AF9ACA00E70522 /* piano.mp3 */; };
+		5020E55F24AFA7D200E70522 /* ImagePostDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020E55E24AFA7D200E70522 /* ImagePostDetailTableViewCell.swift */; };
+		5020E58124B25A5300E70522 /* ExampleJSONReturned.json in Resources */ = {isa = PBXBuildFile; fileRef = 5020E58024B25A5200E70522 /* ExampleJSONReturned.json */; };
+		5020E58324B298B800E70522 /* CreateAudioCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020E58224B298B800E70522 /* CreateAudioCommentViewController.swift */; };
+		5020E58524B2D83700E70522 /* FetchAudioOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5020E58424B2D83700E70522 /* FetchAudioOperation.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +69,13 @@
 		46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePostDetailTableViewController.swift; sourceTree = "<group>"; };
 		5020E53224ABB1B900E70522 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5020E53624ABF7A500E70522 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
+		5020E55824AE795400E70522 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5020E55A24AE7AE700E70522 /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
+		5020E55C24AF9ACA00E70522 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
+		5020E55E24AFA7D200E70522 /* ImagePostDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePostDetailTableViewCell.swift; sourceTree = "<group>"; };
+		5020E58024B25A5200E70522 /* ExampleJSONReturned.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ExampleJSONReturned.json; sourceTree = "<group>"; };
+		5020E58224B298B800E70522 /* CreateAudioCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAudioCommentViewController.swift; sourceTree = "<group>"; };
+		5020E58424B2D83700E70522 /* FetchAudioOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAudioOperation.swift; sourceTree = "<group>"; };
 		5D2CCD6C68779B0A70AC37FA /* Pods-LambdaTimeline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LambdaTimeline.release.xcconfig"; path = "Pods/Target Support Files/Pods-LambdaTimeline/Pods-LambdaTimeline.release.xcconfig"; sourceTree = "<group>"; };
 		AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LambdaTimeline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +122,8 @@
 		4646377A216FDE4B00E7FF73 /* LambdaTimeline */ = {
 			isa = PBXGroup;
 			children = (
+				5020E58024B25A5200E70522 /* ExampleJSONReturned.json */,
+				5020E55C24AF9ACA00E70522 /* piano.mp3 */,
 				5020E53224ABB1B900E70522 /* GoogleService-Info.plist */,
 				46CFE7042171572900E7FF73 /* Views */,
 				46A0366B21700F6100E7FF73 /* View Controllers */,
@@ -117,6 +133,11 @@
 				46CFE7062171573F00E7FF73 /* Helpers */,
 				46463796216FFF6900E7FF73 /* Resources */,
 				5020E53624ABF7A500E70522 /* UIImage+Scaling.swift */,
+				5020E55824AE795400E70522 /* Player.swift */,
+				5020E55A24AE7AE700E70522 /* Recorder.swift */,
+				5020E55E24AFA7D200E70522 /* ImagePostDetailTableViewCell.swift */,
+				5020E58224B298B800E70522 /* CreateAudioCommentViewController.swift */,
+				5020E58424B2D83700E70522 /* FetchAudioOperation.swift */,
 			);
 			path = LambdaTimeline;
 			sourceTree = "<group>";
@@ -283,6 +304,8 @@
 				5020E53324ABB1B900E70522 /* GoogleService-Info.plist in Resources */,
 				46463783216FDE4C00E7FF73 /* Assets.xcassets in Resources */,
 				46463781216FDE4B00E7FF73 /* Main.storyboard in Resources */,
+				5020E58124B25A5300E70522 /* ExampleJSONReturned.json in Resources */,
+				5020E55D24AF9ACA00E70522 /* piano.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +378,9 @@
 				46A0366D2170158900E7FF73 /* SignInViewController.swift in Sources */,
 				5020E53724ABF7A500E70522 /* UIImage+Scaling.swift in Sources */,
 				46CFE6FB21714E6100E7FF73 /* Author.swift in Sources */,
+				5020E55B24AE7AE700E70522 /* Recorder.swift in Sources */,
 				46CFE6F92170862C00E7FF73 /* ShiftableViewController.swift in Sources */,
+				5020E55924AE795500E70522 /* Player.swift in Sources */,
 				4646377C216FDE4B00E7FF73 /* AppDelegate.swift in Sources */,
 				46CFE6FD217154F500E7FF73 /* Networking.swift in Sources */,
 				46CFE6F521707D0000E7FF73 /* ImagePostViewController.swift in Sources */,
@@ -364,8 +389,11 @@
 				46CFE6F32170757F00E7FF73 /* User+DictionaryRepresentation.swift in Sources */,
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,
+				5020E58524B2D83700E70522 /* FetchAudioOperation.swift in Sources */,
+				5020E55F24AFA7D200E70522 /* ImagePostDetailTableViewCell.swift in Sources */,
 				46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */,
 				46CFE7032171572600E7FF73 /* ImagePostCollectionViewCell.swift in Sources */,
+				5020E58324B298B800E70522 /* CreateAudioCommentViewController.swift in Sources */,
 				4646379C2170091A00E7FF73 /* PostController.swift in Sources */,
 				464637992170048900E7FF73 /* FirebaseConvertible.swift in Sources */,
 				46A0366A21700F5100E7FF73 /* PostsCollectionViewController.swift in Sources */,
