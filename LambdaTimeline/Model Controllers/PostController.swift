@@ -10,10 +10,12 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import MapKit
+import CoreLocation
 
 class PostController {
     
-    func createPost(with title: String, ofType mediaType: MediaType, mediaData: Data, ratio: CGFloat? = nil, completion: @escaping (Bool) -> Void = { _ in }) {
+    func createPost(with title: String, ofType mediaType: MediaType, mediaData: Data, ratio: CGFloat? = nil, geotag: CLLocationCoordinate2D? = nil, completion: @escaping (Bool) -> Void = { _ in }) {
         
         guard let currentUser = Auth.auth().currentUser,
             let author = Author(user: currentUser) else { return }
@@ -23,15 +25,30 @@ class PostController {
             
             guard let mediaURL = mediaURL else { completion(false); return }
             
-            let imagePost = Post(title: title, mediaURL: mediaURL, ratio: ratio, author: author)
-            
-            self.postsRef.childByAutoId().setValue(imagePost.dictionaryRepresentation) { (error, ref) in
-                if let error = error {
-                    NSLog("Error posting image post: \(error)")
-                    completion(false)
+            switch mediaType {
+            case .image:
+                let imagePost = Post(title: title, mediaURL: mediaURL, ratio: ratio, author: author, mediaType: mediaType)
+                imagePost.geotag = geotag
+                
+                self.postsRef.childByAutoId().setValue(imagePost.dictionaryRepresentation) { (error, ref) in
+                    if let error = error {
+                        NSLog("Error posting image post: \(error)")
+                        completion(false)
+                    }
+                    completion(true)
                 }
-                completion(true)
-            }
+            case .video:
+                let videoPost = Post(title: title, mediaURL: mediaURL, ratio: ratio, author: author, mediaType: mediaType)
+                videoPost.geotag = geotag
+                
+                self.postsRef.childByAutoId().setValue(videoPost.dictionaryRepresentation) { (error, ref) in
+                    if let error = error {
+                        NSLog("Error posting image post: \(error)")
+                        completion(false)
+                    }
+                    completion(true)
+                }
+            } 
         }
     }
     

@@ -10,6 +10,8 @@ import UIKit
 import Photos
 import CoreImage
 import CoreImage.CIFilterBuiltins
+import MapKit
+import CoreLocation
 
 enum FilterType {
     case ciFalseColor
@@ -34,6 +36,9 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var falseColorTwoSegmentedControl: UISegmentedControl!
     @IBOutlet weak var sepiaIntensitySlider: UISlider!
     
+
+    @IBOutlet weak var geotagSwitch: UISwitch!
+    
     
     
     var postController: PostController!
@@ -41,6 +46,7 @@ class ImagePostViewController: ShiftableViewController {
     var imageData: Data?
     var context = CIContext(options: nil)
     var filterSelected: FilterType!
+    var locationManager: LocationHelper?
     
     //PROPERTIES CI FALSE COLOR
     var colorOne: CIColor = .clear
@@ -80,7 +86,6 @@ class ImagePostViewController: ShiftableViewController {
         falseColorTwoSegmentedControl.addTarget(self, action: #selector(didChangeColorIndexTwo(_:)), for: .valueChanged)
         
         ciZoomBlurSegmentedControl.addTarget(self, action: #selector(didChangeInputCenterPoint(_:)), for: .valueChanged)
-        
         
     }
     
@@ -260,8 +265,6 @@ class ImagePostViewController: ShiftableViewController {
         return colorTwo
     }
     
-    
-    
     //MARK: - END (CI FALSE COLOR)
     
     //MARK: - OBJC functions for (CI ZOOM BLUR)
@@ -300,7 +303,7 @@ class ImagePostViewController: ShiftableViewController {
         updateImage()
     }
     //MARK: - END (Sepia Tone)
-
+    
     
     private func presentImagePickerController() {
         
@@ -308,38 +311,61 @@ class ImagePostViewController: ShiftableViewController {
             presentInformationalAlertController(title: "Error", message: "The photo library is unavailable")
             return
         }
-        
-        let imagePicker = UIImagePickerController()
-        
-        imagePicker.delegate = self
-        
-        imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let imagePicker = UIImagePickerController()
+            
+            imagePicker.delegate = self
+            
+            imagePicker.sourceType = .photoLibrary
+            
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
     @IBAction func createPost(_ sender: Any) {
         
         view.endEditing(true)
-        
         guard let imageData = imageView.image?.jpegData(compressionQuality: 0.1),
             let title = titleTextField.text, title != "" else {
                 presentInformationalAlertController(title: "Uh-oh", message: "Make sure that you add a photo and a caption before posting.")
                 return
         }
         
-        postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: imageView.image?.ratio) { (success) in
-            guard success else {
-                DispatchQueue.main.async {
-                    self.presentInformationalAlertController(title: "Error", message: "Unable to create post. Try again.")
+        //        postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: imageView.image?.ratio, geotag: self.locationManager.get) { (success) in
+        //            guard success else {
+        //                DispatchQueue.main.async {
+        //                    self.presentInformationalAlertController(title: "Error", message: "Unable to create post. Try again.")
+        //                }
+        //                return
+        //            }
+        //            DispatchQueue.main.async {
+        //                self.navigationController?.popViewController(animated: true)
+        //            }
+        //
+        //        }
+        
+        if geotagSwitch.isOn {
+            LocationHelper.shared.getCurrentLocation { (coordinate) in
+                self.postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: self.imageView.image?.ratio, geotag: coordinate) { (success) in
+                    guard success else {
+                        
+                        return
+                    }
                 }
-                return
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-            
-            DispatchQueue.main.async {
-                self.navigationController?.popViewController(animated: true)
+        } else {
+            postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: imageView.image?.ratio, geotag: nil) { (success) in
+                guard success else {
+                    
+                    return
+                }
             }
         }
+        
+        
     }
     
     @IBAction func chooseImage(_ sender: Any) {

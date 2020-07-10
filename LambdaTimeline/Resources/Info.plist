@@ -31,6 +31,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>WE need it ok?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) WE BOUT TO TRACK YOU</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>WE NEED THIS TOO</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>In order to allow you to add photos to posts</string>
 	<key>UILaunchStoryboardName</key>
